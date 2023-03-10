@@ -1,9 +1,9 @@
 import Button from '@/components/FAB/button'
 import PopUp from '@/components/PopUp/content'
 import Head from 'next/head'
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 export default function Home() {
-  const [activePopUp, setActivePopUp] = useState<string>();
+  const [activePopUp, setActivePopUp] = useState<string>('');
   return (
     <>
       <Head>

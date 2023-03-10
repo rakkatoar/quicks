@@ -1,8 +1,12 @@
 
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import MenuButton from '@/components/FAB/menu'
-export const Button = ({setActivePopUp}) => {
+interface IButton {
+	setActivePopUp : (active: string) => void,
+}
+export const Button = (props: IButton) => {
+	const { setActivePopUp } = props;
   const [menus, setMenus] = useState([
 		{
 			title:"Inbox",
@@ -29,32 +33,40 @@ export const Button = ({setActivePopUp}) => {
 		// 	active: false
 		// }
 	]);
-  const [chat, setChat] = useState<string>();
   const [showMenu, setShowMenu] = useState(false);
+	const [isPopUpActive, setIsPopUpActive] = useState(false);
 	const changeActiveMenu = (selectedIndex:number) => {
 		let localMenus = [...menus];
-		localMenus.forEach((menu, index) => {
-			if(index === selectedIndex){
-				setActivePopUp(menu.title)
-				menu.active = true;
-			} else {
+		if (selectedIndex === -1){
+			setIsPopUpActive(false)
+			setActivePopUp('')
+			setShowMenu(false)
+			localMenus.forEach(menu => {
 				menu.active = false;
-			}
-		})
-
+			})
+		} else {
+			localMenus.forEach((menu, index) => {
+				if(index === selectedIndex){
+					setActivePopUp(menu.title)
+					setIsPopUpActive(true)
+					menu.active = true;
+				} else {
+					menu.active = false;
+				}
+			})
+			const [from, take] = [selectedIndex, 1];
+			localMenus = [...localMenus.splice(from, take), ...localMenus];
+		}
+		
 		setMenus(localMenus)
 	};
-  useEffect(() => {
-  }, [])
 
   return (
     <>
-			<button className='z-10 fixed bottom-3 right-3' onClick={() => {setShowMenu(!showMenu)}}>
+			<button className={`z-10 fixed bottom-3 right-3 ${isPopUpActive ? 'hidden' : 'block'}`} onClick={() => {setShowMenu(!showMenu)}}>
 				<Image src={'/assets/icons/floating-btn.svg'} alt="FAB" width={40} height={40} />
 			</button>
-			{menus.map((menu, index) =>
-				<MenuButton key={menu.title} index={index} menu={menu} changeActiveMenu={changeActiveMenu} showMenu={showMenu}/>
-			)}
+			<MenuButton menus={menus} isPopUpActive={isPopUpActive} changeActiveMenu={changeActiveMenu} showMenu={showMenu}/>
     </>
   )
 }
