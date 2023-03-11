@@ -10,26 +10,30 @@ export const Button = (props: IButton) => {
   const [menus, setMenus] = useState([
 		{
 			title:"Inbox",
+			active: false,
+			color: "#8785FF",
 			active_icon:"/assets/icons/inbox-active.svg",
 			inactive_icon:"/assets/icons/inbox.svg",
-			active: false
 		},
 		{
 			title:"Task",
+			color: "#F8B76B",
+			active: false,
 			active_icon:"/assets/icons/tasks-active.svg",
 			inactive_icon:"/assets/icons/tasks.svg",
-			active: false
 		},
 		// {
-		// 	title:"Task 2",
-		// 	active_icon:"/assets/icons/tasks-active.svg",
-		// 	inactive_icon:"/assets/icons/tasks.svg",
+		// 	title:"PopUp",
+		// 	color: "#6FCF97",
+		// 	active_icon:"",
+		// 	inactive_icon:"",
 		// 	active: false
 		// },
 		// {
-		// 	title:"Inbox 2",
-		// 	active_icon:"/assets/icons/inbox-active.svg",
-		// 	inactive_icon:"/assets/icons/inbox.svg",
+		// 	title:"PopUp 2",
+		// 	color: "#56CCF2",
+		// 	active_icon:"",
+		// 	inactive_icon:"",
 		// 	active: false
 		// }
 	]);
@@ -63,8 +67,8 @@ export const Button = (props: IButton) => {
 
   return (
     <>
-			<button className={`z-10 fixed bottom-3 right-3 ${isPopUpActive ? 'hidden' : 'block'}`} onClick={() => {setShowMenu(!showMenu)}}>
-				<Image src={'/assets/icons/floating-btn.svg'} alt="FAB" width={40} height={40} />
+			<button className={`z-10 bottom-3 bg-[#2F80ED] w-10 h-10 rounded-full duration-500 fixed ${isPopUpActive ? 'opacity-0 right-4' : ' opacity-100 right-3'}`} onClick={() => {setShowMenu(!showMenu)}}>
+				<Image className='mx-auto' src={'/assets/icons/floating-btn.svg'} alt="FAB" width={34} height={34} />
 			</button>
 			<MenuButton menus={menus} isPopUpActive={isPopUpActive} changeActiveMenu={changeActiveMenu} showMenu={showMenu}/>
     </>

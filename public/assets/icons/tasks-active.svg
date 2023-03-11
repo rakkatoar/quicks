@@ -1,17 +1,3 @@
-<svg width="76" height="76" viewBox="0 0 76 76" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g filter="url(#filter0_d_2_266)">
-<path d="M72 34C72 52.7777 56.7777 68 38 68C19.2223 68 4 52.7777 4 34C4 15.2223 19.2223 0 38 0C56.7777 0 72 15.2223 72 34Z" fill="#F8B76B"/>
-</g>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M28.1111 24.6663H48.1111C49.3334 24.6663 50.3334 25.6663 50.3334 26.8885V41.3329C50.3334 42.5551 49.3334 43.5551 48.1111 43.5551H28.1111C26.8889 43.5551 25.8889 42.5551 25.8889 41.3329V26.8885C25.8889 25.6663 26.8889 24.6663 28.1111 24.6663ZM28.1111 26.8885V41.3329H37V26.8885H28.1111ZM48.1111 41.3329H39.2222V26.8885H48.1111V41.3329ZM47 30.7774H40.3334V32.444H47V30.7774ZM40.3334 33.5551H47V35.2218H40.3334V33.5551ZM47 36.3329H40.3334V37.9996H47V36.3329Z" fill="white"/>
-<defs>
-<filter id="filter0_d_2_266" x="0" y="0" width="76" height="76" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-<feFlood flood-opacity="0" result="BackgroundImageFix"/>
-<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-<feOffset dy="4"/>
-<feGaussianBlur stdDeviation="2"/>
-<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
-<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_2_266"/>
-<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_2_266" result="shape"/>
-</filter>
-</defs>
+<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M4.11117 4.66626H24.1112C25.3334 4.66626 26.3334 5.66626 26.3334 6.88848V21.3329C26.3334 22.5551 25.3334 23.5551 24.1112 23.5551H4.11117C2.88895 23.5551 1.88895 22.5551 1.88895 21.3329V6.88848C1.88895 5.66626 2.88895 4.66626 4.11117 4.66626ZM4.11117 6.88848V21.3329H13.0001V6.88848H4.11117ZM24.1112 21.3329H15.2223V6.88848H24.1112V21.3329ZM23.0001 10.7774H16.3334V12.444H23.0001V10.7774ZM16.3334 13.5551H23.0001V15.2218H16.3334V13.5551ZM23.0001 16.3329H16.3334V17.9996H23.0001V16.3329Z" fill="white"/>
 </svg>
