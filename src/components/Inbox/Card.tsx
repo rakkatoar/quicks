@@ -6,7 +6,9 @@ interface IChat {
 	text: string,
 	time: string,
 	bubble_color: string,
-	sender_color: string
+	sender_color: string,
+	show_action_button: boolean,
+	reply_message: string
 }
 interface ICard {
 	id: number,
@@ -20,10 +22,9 @@ interface IMessage {
 	message: ICard,
 	messages: ICard[],
 	setSelectedMessage: (active: ICard) => void,
-	setMessages: (active: ICard[]) => void,
 }
 export const Card = (props: IMessage) => {
-	const { message, setSelectedMessage, setMessages, messages } = props;
+	const { message, setSelectedMessage } = props;
 	const otherColor = [
 		{
 			bubble_color: "#FCEED3",
@@ -50,28 +51,25 @@ export const Card = (props: IMessage) => {
 						element.sender_color = "#9B51E0"
 						element.bubble_color = "#EEDCFF"
 					} else {
-						const doesExists = otherSender.findIndex(sender => sender === element.sender) as number
-		
-						if(doesExists && doesExists < 0){
-							otherSender.push(element.sender)
-							element.sender_color = otherColor[otherSender.length - 1].sender_color
-							element.bubble_color = otherColor[otherSender.length - 1].bubble_color
+						if(message.isGroup){
+							const doesExists = otherSender.findIndex(sender => sender === element.sender)
+							if(doesExists < 0){
+								otherSender.push(element.sender)
+								element.sender_color = otherColor[otherSender.length - 1].sender_color
+								element.bubble_color = otherColor[otherSender.length - 1].bubble_color
+							} else {
+								element.sender_color = otherColor[doesExists].sender_color
+								element.bubble_color = otherColor[doesExists].bubble_color
+							}
 						} else {
-							element.sender_color = otherColor[doesExists].sender_color
-							element.bubble_color = otherColor[doesExists].bubble_color
+							element.sender_color = "#2F80ED"
+							element.bubble_color = "#F8F8F8"
 						}
 					}
 				}
 			})
 			
 			setSelectedMessage(message)
-
-			let localMessages: ICard[] = [...messages];
-			const selected = localMessages.findIndex(element => element.id === message.id);
-			if(selected >= 0){
-				localMessages[selected].unread = false;
-				setMessages(localMessages);
-			}
 	}
   return (
     <>

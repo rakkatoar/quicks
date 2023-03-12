@@ -1,7 +1,7 @@
 export const Content = () => {
   return (
     <>
-			<div className='relative'>
+			<div className='relative min-w-[500px]'>
 				Task
 			</div>
     </>
