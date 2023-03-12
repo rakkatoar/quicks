@@ -1,12 +1,16 @@
 
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { forwardRef, Ref, useImperativeHandle, useState } from 'react';
 import MenuButton from '@/components/FAB/menu'
 interface IButton {
 	setActivePopUp : (active: string) => void,
 }
-export const Button = (props: IButton) => {
+interface RefObject {
+  changeActiveMenu: (active: number) => void
+}
+export const Button = forwardRef((props: IButton, ref: Ref<RefObject>) => {
 	const { setActivePopUp } = props;
+	useImperativeHandle(ref, () => ({ changeActiveMenu }));
   const [menus, setMenus] = useState([
 		{
 			title:"Inbox",
@@ -73,6 +77,6 @@ export const Button = (props: IButton) => {
 			<MenuButton menus={menus} isPopUpActive={isPopUpActive} changeActiveMenu={changeActiveMenu} showMenu={showMenu}/>
     </>
   )
-}
+})
 
 export default Button;
