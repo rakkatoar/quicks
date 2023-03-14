@@ -291,7 +291,7 @@ export const Content = (props: IPopUp) => {
 					!isLoading && messages.length === 0 ?
 						<div className='flex flex-col md:min-w-[570px] justify-center items-center h-[90%]'>
 							<VscSearchStop className='text-4xl'/>
-							<p className='text-sm font-semibold'>Not Found</p>
+							<p className='text-sm font-semibold'>No Data</p>
 						</div>
 						:
 						<div className='flex flex-col md:min-w-[570px] justify-center items-center h-[90%]'>

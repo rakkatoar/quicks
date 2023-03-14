@@ -44,7 +44,6 @@ export const Button = forwardRef((props: IButton, ref: Ref<RefObject>) => {
   const [showMenu, setShowMenu] = useState(false);
 	const [isPopUpActive, setIsPopUpActive] = useState(false);
 	const changeActiveMenu = (selectedIndex:number) => {
-		console.log(selectedIndex)
 		let localMenus = [...menus];
 		if (selectedIndex === -1){
 			setIsPopUpActive(false)
@@ -57,7 +56,6 @@ export const Button = forwardRef((props: IButton, ref: Ref<RefObject>) => {
 			localMenus.forEach((menu, index) => {
 				if(index === selectedIndex){
 					if(menu.active){
-						console.log('jalan')
 						changeActiveMenu(-1)
 					} else {
 						setActivePopUp(menu.title)
@@ -77,7 +75,7 @@ export const Button = forwardRef((props: IButton, ref: Ref<RefObject>) => {
   return (
     <>
 			<button className={`bottom-3 bg-[#2F80ED] w-10 h-10 rounded-full duration-500 fixed ${isPopUpActive ? 'opacity-0 right-4' : ' opacity-100 right-3 z-10'}`} onClick={() => {setShowMenu(!showMenu)}}>
-				<Image className='mx-auto' src={'/assets/icons/floating-btn.svg'} alt="FAB" width={34} height={34} />
+				<Image className='mx-auto' src={'/assets/icons/floating-btn.svg'} priority alt="FAB" width={34} height={34} />
 			</button>
 			<MenuButton menus={menus} isPopUpActive={isPopUpActive} changeActiveMenu={changeActiveMenu} showMenu={showMenu}/>
     </>

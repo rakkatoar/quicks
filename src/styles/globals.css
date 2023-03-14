@@ -17,11 +17,6 @@
 	width: 100%
 }
 
-/* width */
-::-webkit-scrollbar {
-  width: 4px;
-}
-
 /* Track */
 ::-webkit-scrollbar-track {
   border-radius: 10px;
@@ -36,4 +31,21 @@
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #adadad; 
+}
+
+::-webkit-scrollbar {
+  height: 4px;
+  width: 4px;
+}
+.react-calendar__navigation__prev2-button, .react-calendar__navigation__next2-button{
+	display:none;
+}
+
+.react-calendar__navigation{
+	margin-bottom:0 !important;
+	height: 36px !important;
+}
+
+.react-calendar__tile{
+	padding: 5px !important;
 }
