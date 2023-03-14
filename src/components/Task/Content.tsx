@@ -228,8 +228,10 @@ export const Content = () => {
   const openEditDescription = (id:number) => {
     let localAllTasks = [...allTasks]
     const taskIndex = localAllTasks.findIndex(element => element.id === id)
-    localAllTasks[taskIndex].isEditing = !localAllTasks[taskIndex].isEditing
-    setAllTasks(localAllTasks)
+    if(localAllTasks[taskIndex]){
+      localAllTasks[taskIndex].isEditing = !localAllTasks[taskIndex].isEditing
+      setAllTasks(localAllTasks)
+    }
   }
   const openCalendar = (id:number) => {
     let localAllTasks = [...allTasks]
@@ -245,8 +247,10 @@ export const Content = () => {
   const openLabels = (id:number) => {
     let localAllTasks = [...allTasks]
     const taskIndex = localAllTasks.findIndex(element => element.id === id)
-    localAllTasks[taskIndex].isLabelsOpen = !localAllTasks[taskIndex].isLabelsOpen;
-    setAllTasks(localAllTasks)
+    if(localAllTasks[taskIndex]){
+      localAllTasks[taskIndex].isLabelsOpen = !localAllTasks[taskIndex].isLabelsOpen;
+      setAllTasks(localAllTasks)
+    }
   }
   const openCard = (id:number) => {
     let localAllTasks = [...allTasks]
@@ -304,9 +308,13 @@ export const Content = () => {
     setAllTasks(localAllTasks)
   }
   const filterTask = (category:ICategory) => {
+    setIsLoading(true)
     const filtered = allTasks.filter(element => element.category === category.id)
-    setTasks(filtered)
-
+    setTimeout(() => {
+      setIsLoading(false)
+      setTasks(filtered)
+    }, 2000);
+    setIsCreating(false)
     setSelectedCategory(category);
     setShowFilter(false)
   }
@@ -318,10 +326,7 @@ export const Content = () => {
 		return dateTime.format('DD[/]MM[/]YYYY')
 	}
   useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false)
-      filterTask(categories[0])
-    }, 2000);
+    filterTask(categories[0])
   }, [])
   return (
     <>
@@ -350,13 +355,11 @@ export const Content = () => {
               <div className='grid grid-cols-20 gap-1 w-full border-b-2 py-4 items-start'>
                 <input className='w-full col-span-1 mt-1' type={'checkbox'} checked={task.isDone} onChange={(e) => changeStatus(e.target.checked, task.id)} />
                 {isCreating && task.title.length === 0 ? 
-                  <input className="col-span-11 text-sm font-semibold" placeholder='Type Task Title' onBlur={(e) => inputTitle(e.target.value, task.id)}/>
+                  <input className="col-span-11 text-sm font-semibold p-2" placeholder='Type Task Title' onBlur={(e) => inputTitle(e.target.value, task.id)}/>
                 :
                   <p className={`col-span-11 text-sm font-semibold ${task.isDone ? 'text-[#828282] line-through' : ''}`}>{task.title}</p>
                 }
-                {!task.isDone &&
-                  <p className='col-span-3 whitespace-nowrap text-sm text-[#EB5757]'>{countRemainingDays(task.date) > 0 ? countRemainingDays(task.date)+' Days Left' : ''}</p>
-                }
+                <p className='col-span-3 whitespace-nowrap text-sm text-[#EB5757]'>{!task.isDone && countRemainingDays(task.date) > 0 ? countRemainingDays(task.date)+' Days Left' : ''}</p>
                 <p className='col-span-3 text-sm'>{formatDate(task.date)}</p>
                 <IoChevronDownOutline className={`col-span-1 cursor-pointer ${task.isCardOpen ? 'rotate-180' : ''}`} onClick={() => openCard(task.id)}/>
                 <div className='relative'>
@@ -369,12 +372,12 @@ export const Content = () => {
                 </div>
               </div>
               <div className={`px-8 py-4 ${task.isCardOpen ? 'max-h-none block' : 'max-h-0 hidden'}`}>
-                <div className='grid grid-cols-10 items-center'>
+                <div className='grid grid-cols-10 items-center px-2'>
                   <WiTime4 size={20} className="col-span-1 text-[#2F80ED]" />
                   <div className='col-span-9'>
                     <div className="relative min-w-[150px] cursor-pointer p-2 rounded-lg border-2 w-fit">
                       <div className='flex justify-between items-center gap-2' onClick={() => openCalendar(task.id)}>
-                        <p className='text-sm'>{formatDate(task.date)}</p>
+                        <p className='text-sm'>{isCreating && task.title === '' ? 'Set Date' : formatDate(task.date)}</p>
                         <FiCalendar size={16}/>
                       </div>
                       {task.isCalendarOpen &&
@@ -389,7 +392,7 @@ export const Content = () => {
                     </div>
                   </div>
                 </div>
-                <div className='grid grid-cols-10 mt-4 items-center'>
+                <div className='grid grid-cols-10 mt-4 items-center px-2'>
                   <MdOutlineModeEdit size={20} className="col-span-1 text-[#2F80ED]" onClick={() => openEditDescription(task.id)}/>
                   <div className='col-span-9 text-sm'>
                     {!task.isEditing ? 
