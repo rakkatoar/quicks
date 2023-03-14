@@ -281,7 +281,7 @@ export const Detail = (props: IMessage) => {
 							<p>Delete this chat?</p>
 							<div className='flex justify-between'>
 								<button className='bg-[#2F80ED] h-10 px-4 py-2 rounded-lg text-white' onClick={() => setShowDeleteConfirmation(0)}>No</button>
-								<button className='bg-[#2F80ED] h-10 px-4 py-2 rounded-lg text-white' onClick={() => {deleteMessage(message, showDeleteConfirmation); setShowDeleteConfirmation(0)}}>Yes</button>
+								<button className='border-[#EB5757] h-10 px-4 py-2 rounded-lg text-[#EB5757]' onClick={() => {deleteMessage(message, showDeleteConfirmation); setShowDeleteConfirmation(0)}}>Yes</button>
 							</div>
 						</div>
 					</div>
